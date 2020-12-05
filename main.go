@@ -11,5 +11,5 @@ func main() {
 		fmt.Printf("Error reading config %s", err)
 		return
 	}
-	fmt.Print(config.DiscordPublicKey)
+	fmt.Println(config.DiscordPublicKey)
 }
