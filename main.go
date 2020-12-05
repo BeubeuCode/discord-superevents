@@ -7,6 +7,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/Lukaesebrot/dgc"
 	"github.com/bwmarrin/discordgo"
 )
 
@@ -25,8 +26,6 @@ func main() {
 		fmt.Println(err.Error())
 	}
 
-	// setting the message handler
-	discord.AddHandler(messageCreate)
 	// We want to receive messages
 	discord.Identify.Intents = discordgo.MakeIntent(discordgo.IntentsGuildMessages)
 	// Open discord channel
@@ -37,6 +36,38 @@ func main() {
 		fmt.Println(err.Error())
 	}
 
+	router := dgc.Create(&dgc.Router{
+		// prefixes
+		Prefixes: []string{
+			"!#",
+		},
+		// case is not important
+		IgnorePrefixCase: true,
+		// bots cannot trigger
+		BotsAllowed: false,
+		// Command array (defined later)
+		Commands: []*dgc.Command{},
+		// Middlwewares
+		Middlewares: []dgc.Middleware{},
+		PingHandler: func(ctx *dgc.Ctx) {
+			ctx.RespondText("Pong !")
+		},
+	})
+
+	router.RegisterDefaultHelpCommand(discord, nil)
+	// commands
+
+	router.RegisterCmd(&dgc.Command{
+		Name:        "test",
+		Description: "Test command",
+		Usage:       "!#test",
+		Example:     "!#test",
+		IgnoreCase:  true,
+		Handler:     testCommand,
+	})
+
+	router.Initialize(discord)
+
 	fmt.Println("Bot is running, press CTRL-C to stop it.")
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt, os.Kill)
@@ -45,14 +76,7 @@ func main() {
 	discord.Close()
 }
 
-func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
+func testCommand(ctx *dgc.Ctx) {
 
-	// preventing the bot from replying to itself
-	if m.Author.ID == s.State.User.ID {
-		return
-	}
-
-	if m.Content == "ping" {
-		s.ChannelMessageSend(m.ChannelID, "Pong !")
-	}
+	ctx.RespondText("working !")
 }
