@@ -66,6 +66,14 @@ func main() {
 		Handler:     testCommand,
 	})
 
+	router.RegisterCmd(&dgc.Command{
+		Name:        "create",
+		Description: "Creates a SuperEvent",
+		Usage:       "!#create \"Title\" \"Quote\" \"Quote Author\" ImageURL \"Subtitle\"",
+		IgnoreCase:  true,
+		Handler:     createSuperEvent,
+	})
+
 	router.Initialize(discord)
 
 	fmt.Println("Bot is running, press CTRL-C to stop it.")
@@ -77,6 +85,9 @@ func main() {
 }
 
 func testCommand(ctx *dgc.Ctx) {
-
 	ctx.RespondText("working !")
+}
+
+func createSuperEvent(ctx *dgc.Ctx) {
+	ctx.RespondText("PlaceHolder")
 }
