@@ -1,7 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"discord-superevents/util"
+	"fmt"
+)
 
 func main() {
-	fmt.Println("bonjour")
+	config, err := util.LoadConfig(".")
+	if err != nil {
+		fmt.Errorf("Error reading config %s", err)
+		return
+	}
+	fmt.Print(config.DiscordPublicKey)
 }
