@@ -8,7 +8,7 @@ import (
 func main() {
 	config, err := util.LoadConfig(".")
 	if err != nil {
-		fmt.Errorf("Error reading config %s", err)
+		fmt.Printf("Error reading config %s", err)
 		return
 	}
 	fmt.Print(config.DiscordPublicKey)
