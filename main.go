@@ -24,8 +24,15 @@ func main() {
 	}
 
 	discord.AddHandler(messageCreate)
+	// We want to receive messages
+	discord.Identify.Intents = discordgo.MakeIntent(discordgo.IntentsGuildMessages)
+	// Open discord channel
+	err = discord.Open()
 
-	fmt.Println(config.DiscordPublicKey)
+	if err != nil {
+		err := fmt.Errorf("Error Connecting to API %s", err)
+		fmt.Println(err.Error())
+	}
 
 	fmt.Println("Bot is running, press CTRL-C to stop it.")
 	sc := make(chan os.Signal, 1)
