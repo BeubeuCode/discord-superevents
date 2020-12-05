@@ -11,18 +11,21 @@ import (
 )
 
 func main() {
+	// load config
 	config, err := util.LoadConfig(".")
 	if err != nil {
 		fmt.Printf("Error reading config %s", err)
 		return
 	}
 
+	// creating bot
 	discord, err := discordgo.New("Bot " + config.DiscordSecretKey)
 	if err != nil {
 		err := fmt.Errorf("Error Connecting to API %s", err)
 		fmt.Println(err.Error())
 	}
 
+	// setting the message handler
 	discord.AddHandler(messageCreate)
 	// We want to receive messages
 	discord.Identify.Intents = discordgo.MakeIntent(discordgo.IntentsGuildMessages)
