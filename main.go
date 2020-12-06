@@ -75,12 +75,12 @@ func main() {
 		Handler:     commands.CreateSuperEvent,
 	})
 
-	router.RegisterCmd(&dgc.Command {
-		Name: "show",
+	router.RegisterCmd(&dgc.Command{
+		Name:        "show",
 		Description: "shows a superevent",
-		Usage: "!#show \"ID\"",
-		IgnoreCase: true,
-		Handler: commands.ShowSuperEvent
+		Usage:       "!#show \"ID\"",
+		IgnoreCase:  true,
+		Handler:     commands.ShowSuperEvent,
 	})
 
 	router.Initialize(discord)
