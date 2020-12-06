@@ -63,7 +63,7 @@ func main() {
 		Usage:       "!#test",
 		Example:     "!#test",
 		IgnoreCase:  true,
-		Handler:     testCommand,
+		Handler:     commands.testCommand,
 	})
 
 	router.RegisterCmd(&dgc.Command{
@@ -82,10 +82,6 @@ func main() {
 	<-sc
 
 	discord.Close()
-}
-
-func testCommand(ctx *dgc.Ctx) {
-	ctx.RespondText("working !")
 }
 
 func createSuperEvent(ctx *dgc.Ctx) {
