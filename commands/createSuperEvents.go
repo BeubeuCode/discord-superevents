@@ -11,6 +11,10 @@ import (
 	"google.golang.org/api/option"
 )
 
+func registerSuperEvent() {
+	fmt.Println("not implemented")
+}
+
 // CreateSuperEvent reads the command args, creates a firebase instance and returns an ID to invoke the super event.
 func CreateSuperEvent(ctx *dgc.Ctx) {
 
