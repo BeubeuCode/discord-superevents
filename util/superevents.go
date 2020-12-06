@@ -1,4 +1,4 @@
-package main
+package util
 
 // SuperEvent struct for holding the superevents data
 type SuperEvent struct {
