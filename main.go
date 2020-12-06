@@ -71,7 +71,7 @@ func main() {
 		Description: "Creates a SuperEvent",
 		Usage:       "!#create \"Title\" \"Quote\" \"Quote Author\" ImageURL \"Subtitle\"",
 		IgnoreCase:  true,
-		Handler:     createSuperEvent,
+		Handler:     commands.createSuperEvent,
 	})
 
 	router.Initialize(discord)
@@ -82,8 +82,4 @@ func main() {
 	<-sc
 
 	discord.Close()
-}
-
-func createSuperEvent(ctx *dgc.Ctx) {
-	ctx.RespondText("PlaceHolder")
 }
