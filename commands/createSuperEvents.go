@@ -18,11 +18,14 @@ func CreateSuperEvent(ctx *dgc.Ctx) {
 	arguments := ctx.Arguments
 	fmt.Println(arguments)
 	fmt.Println(arguments.Amount())
+	//loading config file
 	config, err := util.LoadConfig(".")
 	if err != nil {
 		fmt.Printf("Error reading config %s", err)
 		return
 	}
+
+	// firestore stuff
 	context := context.Background()
 	sa := option.WithCredentialsFile(config.FirebaseKeyPath)
 	app, err := firebase.NewApp(context, nil, sa)
@@ -35,5 +38,6 @@ func CreateSuperEvent(ctx *dgc.Ctx) {
 		log.Fatalln(err)
 	}
 	defer client.Close()
+	// echoing back to user
 	ctx.RespondText("fin de méthode de création")
 }
