@@ -45,8 +45,6 @@ func getSuperEventData(eventID string) (map[string]interface{}, error) {
 func ShowSuperEvent(ctx *dgc.Ctx) {
 	// command arguments
 	arguments := ctx.Arguments
-	fmt.Println(arguments)
-	fmt.Println(arguments.Amount())
 	data, err := getSuperEventData(arguments.Get(0).Raw())
 	if err != nil {
 		fmt.Printf("ERROR GETTING SUPEREVENT DATA %s: ", err)
