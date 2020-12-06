@@ -11,6 +11,7 @@ import (
 	"google.golang.org/api/option"
 )
 
+// gets a super event from the firestore db and shows it
 func ShowSuperEvent(ctx *dgc.Ctx) {
 	// command arguments
 	arguments := ctx.Arguments
