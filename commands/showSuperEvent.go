@@ -56,6 +56,8 @@ func ShowSuperEvent(ctx *dgc.Ctx) {
 	ctx.RespondText(data["Title"].(string))
 	ctx.RespondText("*" + data["Subtitle"].(string) + "*")
 	ctx.RespondText("**" + data["Description"].(string) + "**")
+	ctx.RespondText("\" " + data["Quote"].(string) + " \"")
+	ctx.RespondText(" - " + data["QuoteAuthor"].(string))
 	ctx.RespondText(data["ImageURL"].(string))
 
 }
