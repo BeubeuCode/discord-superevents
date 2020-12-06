@@ -11,7 +11,13 @@ import (
 	"google.golang.org/api/option"
 )
 
+// CreateSuperEvent reads the command args, creates a firebase instance and returns an ID to invoke the super event.
 func CreateSuperEvent(ctx *dgc.Ctx) {
+
+	// command arguments
+	arguments := ctx.Arguments
+	fmt.Println(arguments)
+	fmt.Println(arguments.Amount())
 	config, err := util.LoadConfig(".")
 	if err != nil {
 		fmt.Printf("Error reading config %s", err)
@@ -29,5 +35,5 @@ func CreateSuperEvent(ctx *dgc.Ctx) {
 		log.Fatalln(err)
 	}
 	defer client.Close()
-	ctx.RespondText("")
+	ctx.RespondText("fin de méthode de création")
 }
