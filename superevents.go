@@ -2,7 +2,7 @@ package main
 
 // SuperEvent struct for holding the superevents data
 type SuperEvent struct {
-	ID          int
+	ID          string
 	Title       string
 	Quote       string
 	QuoteAuthor string
