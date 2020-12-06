@@ -1,6 +1,7 @@
 package main
 
 import (
+	"discord-superevents/commands"
 	"discord-superevents/util"
 	"fmt"
 	"os"
@@ -63,7 +64,7 @@ func main() {
 		Usage:       "!#test",
 		Example:     "!#test",
 		IgnoreCase:  true,
-		Handler:     commands.testCommand,
+		Handler:     commands.TestCommand,
 	})
 
 	router.RegisterCmd(&dgc.Command{
@@ -71,7 +72,7 @@ func main() {
 		Description: "Creates a SuperEvent",
 		Usage:       "!#create \"Title\" \"Quote\" \"Quote Author\" ImageURL \"Subtitle\"",
 		IgnoreCase:  true,
-		Handler:     commands.createSuperEvent,
+		Handler:     commands.CreateSuperEvent,
 	})
 
 	router.Initialize(discord)

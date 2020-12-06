@@ -2,6 +2,6 @@ package commands
 
 import "github.com/Lukaesebrot/dgc"
 
-func createSuperEvent(ctx *dgc.Ctx) {
+func CreateSuperEvent(ctx *dgc.Ctx) {
 	ctx.RespondText("PlaceHolder")
 }
