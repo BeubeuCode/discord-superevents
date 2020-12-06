@@ -5,11 +5,29 @@ import (
 	"discord-superevents/util"
 	"fmt"
 	"log"
+	"math/rand"
+	"strings"
+	"time"
 
 	firebase "firebase.google.com/go"
 	"github.com/Lukaesebrot/dgc"
 	"google.golang.org/api/option"
 )
+
+//createID returns a random string with characters from the charset variable for the ID of the superevent
+func createID() string {
+	rand.Seed(time.Now().Unix())
+	charset := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+	var output strings.Builder
+	length := 20
+
+	for i := 0; i < length; i++ {
+		random := rand.Intn(len(charset))
+		randomChar := charset[random]
+		output.WriteString(string(randomChar))
+	}
+	return output.String()
+}
 
 func registerSuperEvent(Title string, Subtitle string, ImageURL string, Description string, Quote string, QuoteAuthor string) {
 
@@ -32,7 +50,29 @@ func registerSuperEvent(Title string, Subtitle string, ImageURL string, Descript
 		log.Fatalln(err)
 	}
 	defer client.Close()
-	return
+
+	superEvent := util.SuperEvent{
+		ID:          createID(),
+		Title:       Title,
+		Description: Description,
+		Quote:       Quote,
+		QuoteAuthor: QuoteAuthor,
+		ImageURL:    ImageURL,
+		Subtitle:    Subtitle,
+	}
+
+	_, err = client.Collection("superevents").Doc(superEvent.Title).Set(context, map[string]interface{}{
+		"Title":       superEvent.Title,
+		"Description": superEvent.Description,
+		"Quote":       superEvent.Quote,
+		"QuoteAuthor": superEvent.QuoteAuthor,
+		"ImageURL":    superEvent.ImageURL,
+		"Subtitle":    superEvent.Subtitle,
+	})
+
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
 
 // CreateSuperEvent reads the command args, creates a firebase instance and returns an ID to invoke the super event.
