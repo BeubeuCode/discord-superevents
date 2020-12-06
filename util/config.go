@@ -10,6 +10,7 @@ import (
 type Config struct {
 	DiscordPublicKey string `mapstructure:"DISCORD_PUBLIC_KEY"`
 	DiscordSecretKey string `mapstructure:"DISCORD_SECRET_KEY"`
+	FirebaseKeyPath  string `mapstructure:"FIREBASE_KEY_PATH"`
 }
 
 //LoadConfig loads config file and returns it
