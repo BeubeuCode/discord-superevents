@@ -51,6 +51,7 @@ func registerSuperEvent(Title string, Subtitle string, ImageURL string, Descript
 	}
 	defer client.Close()
 	superEventID := createID()
+	fmt.Println("Event ID : " + superEventID)
 	superEvent := util.SuperEvent{
 		ID:          ID,
 		Title:       Title,
@@ -61,7 +62,7 @@ func registerSuperEvent(Title string, Subtitle string, ImageURL string, Descript
 		Subtitle:    Subtitle,
 	}
 
-	_, err = client.Collection("superevents").Doc(superEvent.Title).Set(context, map[string]interface{}{
+	_, err = client.Collection("superevents").Doc(superEventID).Set(context, map[string]interface{}{
 		"Title":       superEvent.Title,
 		"Description": superEvent.Description,
 		"Quote":       superEvent.Quote,
