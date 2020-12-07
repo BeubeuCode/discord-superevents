@@ -70,7 +70,7 @@ func main() {
 	router.RegisterCmd(&dgc.Command{
 		Name:        "create",
 		Description: "Creates a SuperEvent, and returns the id of the superevent",
-		Usage:       "!#create \"Title\" \"Quote\" \"Quote Author\" ImageURL \"Subtitle\"",
+		Usage:       "!#create \"Title\" \"Quote\" \"Quote Author\" ImageURL \"Subtitle\" \"Description\"",
 		IgnoreCase:  true,
 		Handler:     commands.CreateSuperEvent,
 	})

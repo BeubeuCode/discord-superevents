@@ -29,7 +29,7 @@ func createID() string {
 	return output.String()
 }
 
-func registerSuperEvent(Title string, Subtitle string, ImageURL string, Description string, Quote string, QuoteAuthor string) {
+func registerSuperEvent(Title string, Subtitle string, ImageURL string, Description string, Quote string, QuoteAuthor string) (ID string, err error) {
 
 	//loading config file
 	config, err := util.LoadConfig(".")
@@ -50,9 +50,9 @@ func registerSuperEvent(Title string, Subtitle string, ImageURL string, Descript
 		log.Fatalln(err)
 	}
 	defer client.Close()
-
+	superEventID := createID()
 	superEvent := util.SuperEvent{
-		ID:          createID(),
+		ID:          ID,
 		Title:       Title,
 		Description: Description,
 		Quote:       Quote,
@@ -73,6 +73,8 @@ func registerSuperEvent(Title string, Subtitle string, ImageURL string, Descript
 	if err != nil {
 		log.Fatalln(err)
 	}
+
+	return superEventID, err
 }
 
 // CreateSuperEvent reads the command args, creates a firebase instance and returns an ID to invoke the super event.
@@ -82,7 +84,15 @@ func CreateSuperEvent(ctx *dgc.Ctx) {
 	arguments := ctx.Arguments
 	fmt.Println(arguments)
 	fmt.Println(arguments.Amount())
+	// Fetching args into variables
+	var title string = arguments.Get(0).Raw()
+	var quote string = arguments.Get(1).Raw()
+	var quoteAuthor string = arguments.Get(2).Raw()
+	var imageURL string = arguments.Get(3).Raw()
+	var subtitle string = arguments.Get(4).Raw()
+	var description string = arguments.Get(5).Raw()
 
+	registerSuperEvent(title, subtitle, imageURL, description, quote, quoteAuthor)
 	// echoing back to user
 	ctx.RespondText("fin de méthode de création")
 }
