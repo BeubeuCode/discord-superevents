@@ -92,7 +92,11 @@ func CreateSuperEvent(ctx *dgc.Ctx) {
 	var subtitle string = arguments.Get(4).Raw()
 	var description string = arguments.Get(5).Raw()
 
-	registerSuperEvent(title, subtitle, imageURL, description, quote, quoteAuthor)
+	ID, err := registerSuperEvent(title, subtitle, imageURL, description, quote, quoteAuthor)
+	if err != nil {
+		ctx.RespondText("Error creating super event. Please try again")
+	} else {
+		ctx.RespondText("Created super event ! ID : " + ID)
+	}
 	// echoing back to user
-	ctx.RespondText("fin de méthode de création")
 }
