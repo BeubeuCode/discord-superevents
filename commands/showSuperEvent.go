@@ -43,6 +43,12 @@ func getSuperEventData(eventID string) (map[string]interface{}, error) {
 
 // ShowSuperEvent gets a super event from the firestore db and shows it
 func ShowSuperEvent(ctx *dgc.Ctx) {
+	defer func() {
+		if err := recover(); err != nil {
+			log.Println("panic : ", err)
+			ctx.RespondText("Error : unknown event ID")
+		}
+	}()
 	// command arguments
 	arguments := ctx.Arguments
 	data, err := getSuperEventData(arguments.Get(0).Raw())

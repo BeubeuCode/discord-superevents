@@ -30,7 +30,6 @@ func createID() string {
 }
 
 func registerSuperEvent(Title string, Subtitle string, ImageURL string, Description string, Quote string, QuoteAuthor string) (ID string, err error) {
-
 	//loading config file
 	config, err := util.LoadConfig(".")
 	if err != nil {
@@ -80,7 +79,12 @@ func registerSuperEvent(Title string, Subtitle string, ImageURL string, Descript
 
 // CreateSuperEvent reads the command args, creates a firebase instance and returns an ID to invoke the super event.
 func CreateSuperEvent(ctx *dgc.Ctx) {
-
+	defer func() {
+		if err := recover(); err != nil {
+			log.Println("Panic : " + err.(string))
+			ctx.RespondText("fatal error ! cannot create superevent.")
+		}
+	}()
 	// command arguments
 	arguments := ctx.Arguments
 	fmt.Println(arguments)
