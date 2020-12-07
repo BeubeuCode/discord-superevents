@@ -1,3 +1,4 @@
+[![made-with-Go](https://img.shields.io/badge/Made%20with-Go-1f425f.svg)](http://golang.org) [![Go Report Card](https://goreportcard.com/badge/github.com/PiiXelx64/discord-superevents)](https://goreportcard.com/report/github.com/PiiXelx64/discord-superevents)
 # discord-superevents
 
 Spice up your discord server with some superevents !
