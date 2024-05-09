@@ -1,5 +1,5 @@
-[![made-with-Go](https://img.shields.io/badge/Made%20with-Go-1f425f.svg)](http://golang.org) [![Go Report Card](https://goreportcard.com/badge/github.com/PiiXelx64/discord-superevents)](https://goreportcard.com/report/github.com/PiiXelx64/discord-superevents)
-# discord-superevents
+[![made-with-Go](https://img.shields.io/badge/Made%20with-Go-1f425f.svg)](http://golang.org) [![Go Report Card](https://goreportcard.com/badge/github.com/PiiXelx64/benoit-arnoult.xyz/discord-superevents)](https://goreportcard.com/report/github.com/PiiXelx64/benoit-arnoult.xyz/discord-superevents)
+# benoit-arnoult.xyz/discord-supereventsdiscord-superevents
 
 Spice up your discord server with some superevents !
 
@@ -22,7 +22,7 @@ Download the source code, install deps
 go get github.com/spf13/viper
 go get firebase.google.com/go
 go get github.com/bwmarrin/discordgo
-go get github.com/Lukaesebrot/dgc
+go get  github.com/lus/dgc
 ```
 and run `go build`.
 ## Getting Help

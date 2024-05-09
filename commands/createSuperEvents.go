@@ -2,19 +2,20 @@ package commands
 
 import (
 	"context"
-	"discord-superevents/util"
 	"fmt"
 	"log"
 	"math/rand"
 	"strings"
 	"time"
 
+	"benoit-arnoult.xyz/discord-superevents/util"
+
 	firebase "firebase.google.com/go"
-	"github.com/Lukaesebrot/dgc"
+	"github.com/lus/dgc"
 	"google.golang.org/api/option"
 )
 
-//createID returns a random string with characters from the charset variable for the ID of the superevent
+// createID returns a random string with characters from the charset variable for the ID of the superevent
 func createID() string {
 	rand.Seed(time.Now().Unix())
 	charset := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
