@@ -1,15 +1,17 @@
 package main
 
 import (
-	"discord-superevents/commands"
-	"discord-superevents/util"
 	"fmt"
 	"os"
 	"os/signal"
 	"syscall"
 
-	"github.com/Lukaesebrot/dgc"
+	"benoit-arnoult.xyz/discord-superevents/util"
+
+	"benoit-arnoult.xyz/discord-superevents/commands"
+
 	"github.com/bwmarrin/discordgo"
+	"github.com/lus/dgc"
 )
 
 func main() {
@@ -23,7 +25,7 @@ func main() {
 	// creating bot
 	discord, err := discordgo.New("Bot " + config.DiscordSecretKey)
 	if err != nil {
-		err := fmt.Errorf("Error Connecting to API %s", err)
+		err := fmt.Errorf("error connecting to API %s", err)
 		fmt.Println(err.Error())
 	}
 
@@ -33,7 +35,7 @@ func main() {
 	err = discord.Open()
 
 	if err != nil {
-		err := fmt.Errorf("Error Connecting to API %s", err)
+		err := fmt.Errorf("error connecting to API %s", err)
 		fmt.Println(err.Error())
 	}
 
@@ -87,7 +89,7 @@ func main() {
 
 	fmt.Println("Bot is running, press CTRL-C to stop it.")
 	sc := make(chan os.Signal, 1)
-	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt, os.Kill)
+	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt)
 	<-sc
 
 	discord.Close()

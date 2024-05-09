@@ -2,12 +2,13 @@ package commands
 
 import (
 	"context"
-	"discord-superevents/util"
 	"fmt"
 	"log"
 
+	"benoit-arnoult.xyz/discord-superevents/util"
+
 	firebase "firebase.google.com/go"
-	"github.com/Lukaesebrot/dgc"
+	"github.com/lus/dgc"
 	"google.golang.org/api/option"
 )
 

@@ -1,7 +1,7 @@
 package commands
 
 import (
-	"github.com/Lukaesebrot/dgc"
+	"github.com/lus/dgc"
 )
 
 func TestCommand(ctx *dgc.Ctx) {
